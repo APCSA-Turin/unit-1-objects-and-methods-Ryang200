@@ -2,79 +2,44 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
-        ChatBot debbie = new ChatBot("Debbie", 7);
-        System.out.print("Enter your name: ");
-        String userName = scanner.nextLine();
-        debbie.greeting(userName);
-        System.out.println();
+        System.out.print("Enter first string: ");
+        String first = in.next();
+        System.out.print("Enter second string: ");
+        String second = in.next();
 
-        debbie.weather();
-        System.out.println();
+        int len1 = first.length();
+        int len2 = second.length();
+        if (len1 > len2) {
+            System.out.println(first + " is longer ");
+        } else if (len2 > len1) {
+            System.out.println(second + " is longer");
+        } else {
+            System.out.println(first + " and " + second + " are the same length.");
+        }
 
+        int mid1 = len1 / 2; 
+        String firstHalf1 = first.substring(0, mid1);  
+        String secondHalf1 = first.substring(mid1);    
 
-        System.out.print("Enter a number of feet to convert to meters: ");
-        int feet = scanner.nextInt();
-        double meters = debbie.convertFeetToMeters(feet);
-        System.out.println(feet + " feet is " + meters + " meters.");
-        System.out.println();
+        int mid2 = len2 / 2;
+        String firstHalf2 = second.substring(0, mid2);  
+        String secondHalf2 = second.substring(mid2);    
 
-        System.out.print("Enter your favorite number: ");
-        int yourNumber = scanner.nextInt();
-        debbie.favoriteNumber(yourNumber);
-        System.out.println();
+        System.out.println("First half:  " + firstHalf1);
+        System.out.println("Second half: " + secondHalf1);
 
+        System.out.println("First half: " + firstHalf2);
+        System.out.println("Second half: " + secondHalf2);
 
-        System.out.print("Enter three numbers separated by spaces: ");
-        int num1 = scanner.nextInt();
-        int num2 = scanner.nextInt();
-        int num3 = scanner.nextInt();
-        int sum = debbie.addNumbers(num1, num2, num3);
-        System.out.println("The sum of your numbers is: " + sum);
-        System.out.println();
+        int foundIndex = first.indexOf(second); // use indexOf()
+        if (foundIndex >= 0) {
+            System.out.println(second + " is found in " + first + " at index " + foundIndex + ".");
+        } else {
+            System.out.println(second + " is NOT found in " + first + ".");
+        }
 
-        //6 New methods
-        System.out.println("Debbie will now tell a joke:");
-        debbie.tellJoke();
-        System.out.println();
-
-        scanner.nextLine(); 
-
-        System.out.print("Enter a hobby: ");
-        String hobby = scanner.nextLine();
-        System.out.print("Enter a city: ");
-        String city = scanner.nextLine();
-        debbie.introduce(hobby, city);
-        System.out.println();
-
-        System.out.print("Enter a nickname base (your name again perhaps): ");
-        String nicknameBase = scanner.nextLine();
-        String nickname = debbie.createNickname(nicknameBase);
-        System.out.println("Debbie made you a nickname: " + nickname);
-        System.out.println();
-
-        System.out.print("How are you feeling today? ");
-        String mood = scanner.nextLine();
-        String moodResponse = debbie.getMoodResponse(mood);
-        System.out.println("Debbie says: " + moodResponse);
-        System.out.println();
-
-        System.out.print("Enter your age in years: ");
-        int ageYears = scanner.nextInt();
-        int ageMonths = debbie.calculateAgeInMonths(ageYears);
-        System.out.println("You are approximately " + ageMonths + " months old!");
-        System.out.println();
-
-        System.out.print("Enter the radius of a circle: ");
-        double radius = scanner.nextDouble();
-        double area = debbie.circleArea(radius);
-        System.out.println("The area of a circle with radius " + radius + " is " + area);
-        System.out.println();
-
-        String goodbyeMessage = debbie.goodbye();
-        System.out.println(goodbyeMessage);
-
-        scanner.close();
+        in.close();
     }
 }
